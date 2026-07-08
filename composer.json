@@ -1,0 +1,15 @@
+{
+    "name": "leiab/module6",
+    "autoload": {
+        "psr-4": {
+            "Leiab\\Module6\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Luke",
+            "email": "lukebisgard@gmail.com"
+        }
+    ],
+    "require": {}
+}

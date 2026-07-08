@@ -3,17 +3,33 @@
 namespace App\Models;
 
 class Book{
-    public $title;
-    public $author;
-    public $genre;
+    public $file = "data/books.json";
 
-    public function displayBookInfo(){
-        return "Title: " . $this->title . ", Author: " . $this->author . ", Genre: " . $this->genre;
+    public function getBooks()
+    {
+        if (!file_exists($this->file)) {
+            return [];
+        }
+
+        return json_decode(
+            file_get_contents($this->file),
+            true
+        );
     }
 
-    public function __construct($title, $author, $genre){
-        $this->title = $title;
-        $this->author = $author;
-        $this->genre = $genre;
+    public function addBook($title, $author, $status)
+    {
+        $books = $this->getBooks();
+
+        $books[] = [
+            "title" => $title,
+            "author" => $author,
+            "status" => $status
+        ];
+
+        file_put_contents(
+            $this->file,
+            json_encode($books, JSON_PRETTY_PRINT)
+        );
     }
 }

@@ -6,29 +6,45 @@ use App\Models\Book;
 
 
 class HomeController{
+    private Book $bookModel;
 
-public Book $bookModel;
+    public function __construct()
+    {
+        $this->bookModel = new Book();
+    }
 
-public function __construct(){
-    $this->bookModel = new Book("", "", "");
-}
+    public function index()
+    {
+        $books = $this->bookModel->getBooks();
 
-public function index(){
-    $book1 = new Book("Project Hail Mary", "Andy Weir", "Science Fiction");
-    $book2 = new Book("The Murderbot Diaries", "Martha Wells", "Science Fiction");
-    $book3 = new Book("1984", "George Orwell", "Dystopian");
+        include "views/books.php";
+    }
 
-    $books = [$book1, $book2, $book3];
+    public function store()
+    {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    
+            $title = trim($_POST["title"]);
+            $author = trim($_POST["author"]);
+            $status = trim($_POST["status"]);
 
-    $this->renderView('BookTracker', ['books' => $books]);
-}
+            // Validate input
+            if (
+                empty($title) ||
+                empty($author) ||
+                empty($status)
+            ) {
+                die("All fields are required.");
+            }
 
-public function renderView($viewName, $data = []){
-    extract($data);
-    require"/Views/" . $viewName . ".php";
-}
+            $this->bookModel->addBook(
+                $title,
+                $author,
+                $status
+            );
 
-
+            header("Location: index.php");
+            exit;
+        }
+    }
 }

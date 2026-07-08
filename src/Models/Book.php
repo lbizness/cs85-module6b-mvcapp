@@ -10,4 +10,10 @@ class Book{
     public function displayBookInfo(){
         return "Title: " . $this->title . ", Author: " . $this->author . ", Genre: " . $this->genre;
     }
+
+    public function __construct($title, $author, $genre){
+        $this->title = $title;
+        $this->author = $author;
+        $this->genre = $genre;
+    }
 }

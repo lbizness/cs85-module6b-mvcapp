@@ -11,10 +11,6 @@
         /** @var array $books */
         ?>
 
-<pre>
-<?php print_r($books); ?>
-</pre>
-
 <table border ="1" cellpadding ="5" cellspacing="0">
     <thead>
         <tr>
@@ -45,12 +41,11 @@
 
     <label>Status:</label><br>
     <select name="status" required>
-        <option value="Reading">Reading</option>
-        <option value="Completed">Completed</option>
+        <option value="Completed">Read</option>
         <option value="Want to Read">Want to Read</option>
     </select><br><br>
 
-    <button type="submit">Add Book</button>
+    <button type="submit">Add Book</button><br><br>
 </form>
 
 

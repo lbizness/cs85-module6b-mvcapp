@@ -6,13 +6,18 @@ I found it generally difficult to wrap my head around how the different files in
 with each other, as this was my first attempt at MVC. My app is meant to keep track of
 a list of books, which the user able to input a new book and see their list. I learned basically
 everything new I now know about MVC! But generally, how different small PHP files come together
-to make a cohesive app. I found it difficult to even start, with a lot of confusion on how to setup
-my file structure.
+to make a cohesive app, and how to link those files together alongside the autoloader. I found it difficult to even start, with a lot of confusion on how to setup my file structure.
 
 AI CODE CRITIQUE:
 I had AI, specifically ChatGPT, write me a method for the user to input a book into the 
-book model. 
+book model. I kept most of the original code for the controller and view, but I did change most of the
+code for the addBook method in the model into a void function instead of a bool as I felt that
+had a cleaner implementation than the bool.
 
+My prompt: 
+I copy/pasted the first three steps in the assignment, and then added "write a method for the user to add a book"
+
+Here was the raw code from ChatGPT:
 Raw code for model:
 public function addBook(string $title, string $author, string $status): bool
 {

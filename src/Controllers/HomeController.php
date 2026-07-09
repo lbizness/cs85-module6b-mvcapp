@@ -17,7 +17,7 @@ class HomeController{
         $status = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_SPECIAL_CHARS);
 
         $bookModel->addBook($title, $author, $status);
-    }
+        }
 
 
         $books = $bookModel->getBooks();

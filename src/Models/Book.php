@@ -3,33 +3,19 @@
 namespace App\Models;
 
 class Book{
-    public $file = "data/books.json";
+    private array $books = [
+        ["title" => "The Great Gatsby", "author" => "F. Scott Fitzgerald", "status" => "Read"],
+            ["title" => "To Kill a Mockingbird", "author" => "Harper Lee", "status" => "Unread"],
+            ["title" => "1984", "author" => "George Orwell", "status" => "Read"]
+            ];
 
-    public function getBooks()
+    public function getBooks(): array
     {
-        if (!file_exists($this->file)) {
-            return [];
-        }
-
-        return json_decode(
-            file_get_contents($this->file),
-            true
-        );
+        return $this->books;
     }
 
-    public function addBook($title, $author, $status)
+    public function addBook(string $title, string $author, string $status): void
     {
-        $books = $this->getBooks();
-
-        $books[] = [
-            "title" => $title,
-            "author" => $author,
-            "status" => $status
-        ];
-
-        file_put_contents(
-            $this->file,
-            json_encode($books, JSON_PRETTY_PRINT)
-        );
+        $this->books[] = ["title" => $title, "author" => $author, "status" => $status];
     }
 }
